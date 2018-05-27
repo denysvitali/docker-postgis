@@ -1,9 +1,8 @@
 node {
-    environment {
-        VERSION = '10-2.4'
-        VARIANT = 'alpine'
-        DOCKER_IMAGE = 'dvitali/postgis'
-    }
+    def VERSION = '10-2.4'
+    def VARIANT = 'alpine'
+    def DOCKER_IMAGE = 'dvitali/postgis'
+    
     stage('Checkout') {
         checkout scm
     }

@@ -9,8 +9,8 @@ node {
     }
 
     stage('Build Image'){
-        sh "cd ${env.VERSION}/${env.VARIANT}/"
-        sh "docker build --pull --no-cache -t ${env.DOCKER_IMAGE}:${env.VERSION}-${env.VARIANT} ."
+        sh "cd ${VERSION}/${VARIANT}/"
+        sh "docker build --pull --no-cache -t ${DOCKER_IMAGE}:${VERSION}-${VARIANT} ."
     }
 
     stage('Push Image') {
@@ -22,8 +22,8 @@ node {
             sh "docker login -u $USER -p $PASS"
         }
 
-        sh "docker tag ${env.DOCKER_IMAGE}:${env.VERSION}-${env.VARIANT} ${env.DOCKER_IMAGE}:${env.VERSION}-${env.VARIANT}-${env.BUILD_NUMBER}"
-        sh "docker push ${env.DOCKER_IMAGE}:${env.VERSION}-${env.VARIANT}-${env.BUILD_NUMBER}"
-        sh "docker push ${env.DOCKER_IMAGE}:${env.VERSION}-${env.VARIANT}"
+        sh "docker tag ${DOCKER_IMAGE}:${VERSION}-${VARIANT} ${DOCKER_IMAGE}:${VERSION}-${VARIANT}-${BUILD_NUMBER}"
+        sh "docker push ${DOCKER_IMAGE}:${VERSION}-${VARIANT}-${BUILD_NUMBER}"
+        sh "docker push ${DOCKER_IMAGE}:${VERSION}-${VARIANT}"
     }
 }

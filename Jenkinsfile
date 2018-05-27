@@ -8,8 +8,7 @@ node {
     }
 
     stage('Build Image'){
-        sh "cd ${VERSION}/${VARIANT}/"
-        sh "docker build --pull --no-cache -t ${DOCKER_IMAGE}:${VERSION}-${VARIANT} ."
+        sh "docker build --pull --no-cache -t ${DOCKER_IMAGE}:${VERSION}-${VARIANT} ${VERSION}/${VARIANT}"
     }
 
     stage('Push Image') {
